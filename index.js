@@ -72,7 +72,25 @@ app.get("/collection/:searchKeywordAndPage", async (req, res) => {
 });
 
 app.post("/uploadImage/", upload.single("productImage"), (req, res, err) => {
-  res.send(req.file);
+  res.send(req.file.path);
+});
+
+app.get("/getProductListByImage/:imgUrl", async (req, res, err) => {
+  try {
+    const imgUrl = req.params.imgUrl;
+    // making first api request for uploading the image to api server
+    _EXTERNAL_URL = `http://api24.ch/taobao/index.php?route=api_tester/call&api_name=upload_img&lang=en&imgcode=https://taobao-1688-api-nodejs.herokuapp.com/uploads/${imgUrl}&key=globalbuybd.com-kazi.tipu.nxt@gmail.com-taobao-1688`;
+    const { data } = await axios.get(_EXTERNAL_URL);
+    const searchUrl = data.items.item.name;
+    console.log(searchUrl);
+
+    //  making second api request for searching by the image
+    _URL_FOR_SEARCHING = `http://api24.ch/taobao/index.php?route=api_tester/call&api_name=item_search_img&lang=en&imgid=${searchUrl.toString()}&key=globalbuybd.com-kazi.tipu.nxt@gmail.com-taobao-1688`;
+    const response = await axios.get(_URL_FOR_SEARCHING);
+    res.send(response.data);
+  } catch (error) {
+    res.status(422).send(error);
+  }
 });
 
 app.listen(port, () => {
