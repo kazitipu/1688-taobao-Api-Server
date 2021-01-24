@@ -89,7 +89,7 @@ app.get("/getProductListByImage/:imgUrl", async (req, res, err) => {
     const response = await axios.get(_URL_FOR_SEARCHING);
     res.send(response.data);
   } catch (error) {
-    res.status(422).send(error);
+    res.status(404).send(error);
   }
 });
 
