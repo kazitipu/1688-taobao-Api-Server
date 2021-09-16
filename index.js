@@ -22,7 +22,7 @@ app.use("/uploads", express.static("uploads"));
 let port = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the api server of globalbuybd.com");
+  res.send("Welcome to the api server of globalbuybd.com. this is the update");
 });
 app.get("/singleProduct/:productIdAndType", async (req, res) => {
   let productIdAndType = req.params.productIdAndType.split(",");
