@@ -28,7 +28,8 @@ app.get("/singleProduct/:productIdAndType", async (req, res) => {
   let productIdAndType = req.params.productIdAndType.split(",");
   let productId = productIdAndType[0];
   let type = productIdAndType[1];
-  _EXTERNAL_URL = `http://api24.ch/${type}/index.php?route=api_tester/call&api_name=item_get&lang=en&num_iid=${productId}&is_promotion=1&key=globalbuybd.com-kazi.tipu.nxt@gmail.com-taobao-1688`;
+  // _EXTERNAL_URL = `http://api24.ch/${type}/index.php?route=api_tester/call&api_name=item_get&lang=en&num_iid=${productId}&is_promotion=1&key=globalbuybd.com-kazi.tipu.nxt@gmail.com-taobao-1688`;
+  _EXTERNAL_URL = `https://asia.atphosting24.com/taobao/index.php?route=api_tester/call&api_name=item_get&lang=zh-CN&num_iid=${productId}&is_promotion=1&key=test-16-09-2021-test3day`
   await axios
     .get(_EXTERNAL_URL)
     .then(function (response) {
