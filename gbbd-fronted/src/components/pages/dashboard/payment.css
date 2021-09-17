@@ -1,0 +1,109 @@
+.stripe-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.successpage-table {
+  margin: 1rem;
+}
+
+.payment-header h5 {
+  margin-left: 2rem;
+  color: gray;
+}
+
+.payment-fullbox {
+  margin-top: 1rem;
+}
+@media (max-width: 600px) {
+  .payment-fullbox {
+    margin-top: 0rem !important;
+  }
+
+  .upload {
+    max-width: 60%;
+  }
+  .upload img {
+    display: none;
+  }
+
+  .payment-fullbox form {
+    max-width: 200px;
+  }
+
+  .payment-logo {
+    max-width: 15% !important;
+    padding: 0.3rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .payment-fullbox form {
+    max-width: 150px !important;
+  }
+}
+@media (max-width: 800px) {
+  .payment-logo {
+    max-width: 10%;
+    padding: 0.3rem;
+  }
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: row;
+}
+
+.choose-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.payment-option {
+  padding: 1rem;
+  background: #f9f9f9;
+  text-align: center;
+  cursor: pointer;
+  color: darkgray;
+}
+.payment-option.not-selected {
+  background: white !important;
+}
+.payment-box {
+  border: none !important;
+  background-color: #f9f9f9;
+}
+.payment-description {
+  padding-top: 0% !important;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  margin: auto;
+}
+
+.payment-image {
+  max-height: 30px;
+}
+.payment-logo {
+  max-width: 5%;
+  padding: 0.3rem;
+  max-height: 35px;
+}
+
+.cityBank {
+  max-width: 50% !important;
+}
+.succes-page-payment-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.success-text h2 {
+  color: white !important;
+}
+
+.success-text h3 {
+  color: orange !important;
+}
