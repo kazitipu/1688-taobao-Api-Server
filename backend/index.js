@@ -23,9 +23,7 @@ app.use("/uploads", express.static("uploads"));
 app.use(express.static(path.join(__dirname, 'build')))
 let port = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+
 app.get("/singleProduct/:productIdAndType", async (req, res) => {
   let productIdAndType = req.params.productIdAndType.split(",");
   let productId = productIdAndType[0];
@@ -96,6 +94,9 @@ app.get("/getProductListByImage/:imgUrl", async (req, res, err) => {
   }
 });
 
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 app.listen(port, () => {
   console.log(`app is listening on the port ${port}`);
 });

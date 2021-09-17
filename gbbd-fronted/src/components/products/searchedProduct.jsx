@@ -50,13 +50,9 @@ class SearchedProduct extends Component {
 
   componentWillReceiveProps = async (nextProps) => {
     if (this.props.match.params.id !== nextProps.match.params.id) {
-      const _EXTERNAL_URL = `https://taobao-1688-api-nodejs.herokuapp.com/singleProduct/${
+      const _EXTERNAL_URL = `/singleProduct/${
         nextProps.match.params.id
       },taobao`;
-      // can't call to direct api
-      // const _EXTERNAL_URL = `https://asia.atphosting24.com/taobao/index.php?route=api_tester/call&api_name=item_get&lang=zh-CN&num_iid=${
-      //   nextProps.match.params.id
-      // }&is_promotion=1&key=test-16-09-2021-test3day`;
       const response = await axios.get(_EXTERNAL_URL);
       console.log(response);
       if (response.data) {
@@ -70,13 +66,9 @@ class SearchedProduct extends Component {
   }
 
   getSingleProduct = async () => {
-    const _EXTERNAL_URL = `https://taobao-1688-api-nodejs.herokuapp.com/singleProduct/${
+    const _EXTERNAL_URL = `/singleProduct/${
       this.props.match.params.id
     },taobao`;
-    // can't call to direct api
-    // const _EXTERNAL_URL = `https://asia.atphosting24.com/taobao/index.php?route=api_tester/call&api_name=item_get&lang=zh-CN&num_iid=${
-    //   this.props.match.params.id
-    // }&is_promotion=1&key=test-16-09-2021-test3day`;
     const response = await axios.get(_EXTERNAL_URL);
     console.log(response);
     if (response.data) {
