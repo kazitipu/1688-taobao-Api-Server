@@ -94,12 +94,11 @@ class ProductListing extends Component {
         try {
           const route = nextProps.match.params.id;
           console.log(route);
-          const _EXTERNAL_URL = `https://taobao-1688-api-nodejs.herokuapp.com/getProductListByImage/${route}`;
+          const _EXTERNAL_URL = `/getProductListByImage/${route}`;
           const response = await axios.get(_EXTERNAL_URL);
+          console.log(response.items);
           if (response.items) {
-            const server_img_url = `https://taobao-1688-api-nodejs.herokuapp.com/uploads/${
-              nextProps.match.params.id
-            }`;
+            const server_img_url = `/uploads/${nextProps.match.params.id}`;
             nextProps.setImgUrl(server_img_url);
             this.props.setSearchedProductsArray(response.items.item);
           } else {

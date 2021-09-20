@@ -97,7 +97,7 @@ class Pets extends Component {
     if (file) {
       // reader.readAsDataURL(file);
       // const imgUrl = await uploadImage(file);
-      const _EXTERNAL_URL = `https://taobao-1688-api-nodejs.herokuapp.com/uploadImage`;
+      const _EXTERNAL_URL = `/uploadImage`;
 
       let data = new FormData();
       data.append("productImage", file);
