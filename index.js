@@ -71,11 +71,8 @@ app.get("/collection/:searchKeywordAndPage", async (req, res) => {
     });
 });
 
-app.post("/uploadImage", upload.single("productImage"), (req, res, err) => {
+app.post("/uploadImage/", upload.single("productImage"), (req, res, err) => {
   res.send(req.file.path);
-});
-app.get("/uploadImage", async (req, res, err) => {
-  res.send("this is a post route for only image uploads");
 });
 
 app.get("/getProductListByImage/:imgUrl", async (req, res, err) => {
