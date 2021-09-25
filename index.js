@@ -27,8 +27,17 @@ app.get("/singleProduct/:productIdAndType", async (req, res) => {
   let productIdAndType = req.params.productIdAndType.split(",");
   let productId = productIdAndType[0];
   let type = productIdAndType[1];
+
   // _EXTERNAL_URL = `http://api24.ch/${type}/index.php?route=api_tester/call&api_name=item_get&lang=en&num_iid=${productId}&is_promotion=1&key=globalbuybd.com-kazi.tipu.nxt@gmail.com-taobao-1688`;
-  _EXTERNAL_URL = `https://asia.atphosting24.com/taobao/index.php?route=api_tester/call&api_name=item_get&lang=zh-CN&num_iid=${productId}&is_promotion=1&key=test-16-09-2021-test3day`;
+  // _EXTERNAL_URL = `https://asia.atphosting24.com/taobao/index.php?route=api_tester/call&api_name=item_get&lang=zh-CN&num_iid=${productId}&is_promotion=1&key=test-16-09-2021-test3day`;
+  let _EXTERNAL_URL;
+  console.log(type);
+  if (type == "taobao") {
+    _EXTERNAL_URL = `https://laonet.online/index.php?route=api_tester%2Fcall&api_name=item_get&lang=zh-CN&num_iid=${productId}&is_promotion=1&key=globalbuybd.com-kazi.tipu.nxt%40gmail.com-taobao-1688`;
+  }
+  if (type == "1688") {
+    _EXTERNAL_URL = `http://api24.ch/1688/index.php?route=api_tester/call&api_name=item_get&lang=en&num_iid=${productId}&is_promotion=1&key=globalbuybd.com-kazi.tipu.nxt@gmail.com-taobao-1688`;
+  }
   await axios
     .get(_EXTERNAL_URL)
     .then(function (response) {
@@ -53,7 +62,8 @@ app.get("/collection/:searchKeywordAndPage", async (req, res) => {
   console.log(page);
 
   console.log(req.params);
-  _EXTERNAL_URL = `http://api24.ch/taobao/index.php?route=api_tester/call&api_name=item_search&lang=en&q=${searchKeyword}&start_price=0&end_price=0&page=${page}&cat=0&discount_only=&sort=&page_size=&seller_info=&nick=&ppath=&imgid=&filter=&key=globalbuybd.com-kazi.tipu.nxt@gmail.com-taobao-1688`;
+  // _EXTERNAL_URL = `http://api24.ch/taobao/index.php?route=api_tester/call&api_name=item_search&lang=en&q=${searchKeyword}&start_price=0&end_price=0&page=${page}&cat=0&discount_only=&sort=&page_size=&seller_info=&nick=&ppath=&imgid=&filter=&key=globalbuybd.com-kazi.tipu.nxt@gmail.com-taobao-1688`;
+  _EXTERNAL_URL = `https://laonet.online/index.php?route=api_tester%2Fcall&api_name=item_search&lang=zh-CN&q=${searchKeyword}&start_price=0&end_price=0&page=${page}&cat=0&discount_only=&sort=&page_size=&seller_info=&nick=&ppath=&imgid=&filter=&key=globalbuybd.com-kazi.tipu.nxt%40gmail.com-taobao-1688`;
 
   await axios
     .get(_EXTERNAL_URL)
@@ -80,7 +90,7 @@ app.get("/getProductListByImage/:imgUrl", async (req, res, err) => {
     const imgUrl = req.params.imgUrl;
     // making first api request for uploading the image to api server
     // _EXTERNAL_URL =`https://laonet.online/index.php?route=api_tester%2Fcall&api_name=upload_img&lang=zh-CN&imgid=http%3A%2F%2Fg-search3.alicdn.com%2Fimg%2Fbao%2Fuploaded%2Fi4%2FO1CN01IDpcD81zHbpHs1YgT_!!2200811456689.jpg&key=globalbuybd.com-kazi.tipu.nxt%40gmail.com-taobao-1688&fbclid=IwAR09XMYKH0WBDqBKxpOw6qNv7xKBZtJlfANMaFMe12VAUcgwfOXCv5yImSw`
-    _EXTERNAL_URL = `https://laonet.online/index.php?route=api_tester/call&api_name=upload_img&lang=en&imgcode=https://taobao-1688-api-nodejs.herokuapp.com/uploads/${imgUrl}&key=globalbuybd.com-kazi.tipu.nxt@gmail.com-taobao-1688`;
+    _EXTERNAL_URL = `https://laonet.online/index.php?route=api_tester/call&api_name=upload_img&lang=en&imgcode=https://gbbd.herokuapp.com/uploads/${imgUrl}&key=globalbuybd.com-kazi.tipu.nxt@gmail.com-taobao-1688`;
     const { data } = await axios.get(_EXTERNAL_URL);
     const searchUrl = data.items.item.name;
     console.log(searchUrl);
