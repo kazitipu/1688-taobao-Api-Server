@@ -100,6 +100,7 @@ class HeaderThree extends Component {
       this.props.history.push(
         `${process.env.PUBLIC_URL}/collection/${this.state.searchBarValue}`
       );
+      this.setState({ searchBarValue: "" });
     } else {
       this.props.setSearchedProductsArray([]);
       if (this.state.searchBarValue.includes("1688")) {
@@ -107,48 +108,13 @@ class HeaderThree extends Component {
         console.log(productId);
         this.props.history.push(`${process.env.PUBLIC_URL}/1688/${productId}`);
       } else {
-        if (!this.state.searchBarValue.includes("pvid")) {
-          let indexOfid = this.state.searchBarValue.search("id");
-          let subString = this.state.searchBarValue.slice(
-            indexOfid,
-            parseInt(indexOfid + 20)
-          );
-          let productId = subString.split("=")[1];
-          console.log(productId);
-          if (productId.includes("&")) {
-            let exactProductId = productId.split("&")[0];
-            console.log(exactProductId);
-            this.props.history.push(
-              `${process.env.PUBLIC_URL}/taobao/${exactProductId}`
-            );
-          } else {
-            this.props.history.push(
-              `${process.env.PUBLIC_URL}/taobao/${productId}`
-            );
-          }
-        } else {
-          let indxOfPvId = this.state.searchBarValue.search("pvid");
-          let subStringPvId = this.state.searchBarValue.slice(indxOfPvId + 10);
-          let indexOfid = subStringPvId.search("id");
-          let subString = subStringPvId.slice(
-            indexOfid,
-            parseInt(indexOfid + 20)
-          );
-          let productId = subString.split("=")[1];
-          console.log(productId);
-          if (productId.includes("&")) {
-            let exactProductId = productId.split("&")[0];
-            console.log(exactProductId);
-            this.props.history.push(
-              `${process.env.PUBLIC_URL}/taobao/${exactProductId}`
-            );
-          } else {
-            this.props.history.push(
-              `${process.env.PUBLIC_URL}/taobao/${productId}`
-            );
-          }
-        }
+        let taobaoUrl = new URL(this.state.searchBarValue);
+        let params = taobaoUrl.search;
+        const urlParams = new URLSearchParams(params);
+        const id = urlParams.get("id");
+        this.props.history.push(`${process.env.PUBLIC_URL}/taobao/${id}`);
       }
+      this.setState({ searchBarValue: "" });
     }
     this.setState({ searchBarValue: "" });
   };
