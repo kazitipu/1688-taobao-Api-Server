@@ -97,37 +97,56 @@ class HeaderThree extends Component {
   handleSearchBarSubmit = (event) => {
     event.preventDefault();
     if (this.state.searchBarValue.length < 35) {
-      this.props.setSearchedProductsArray([]);
       this.props.history.push(
         `${process.env.PUBLIC_URL}/collection/${this.state.searchBarValue}`
       );
     } else {
       this.props.setSearchedProductsArray([]);
       if (this.state.searchBarValue.includes("1688")) {
-        this.props.setSearchedProductDetail(null, "1688");
         let productId = this.state.searchBarValue.split("/")[4].split(".")[0];
         console.log(productId);
         this.props.history.push(`${process.env.PUBLIC_URL}/1688/${productId}`);
       } else {
-        let indexOfid = this.state.searchBarValue.search("id");
-        let subString = this.state.searchBarValue.slice(
-          indexOfid,
-          parseInt(indexOfid + 20)
-        );
-        let productId = subString.split("=")[1];
-        console.log(productId);
-        if (productId.includes("&")) {
-          this.props.setSearchedProductDetail(null, "taobao");
-          let exactProductId = productId.split("&")[0];
-          console.log(exactProductId);
-          this.props.history.push(
-            `${process.env.PUBLIC_URL}/taobao/${exactProductId}`
+        if (!this.state.searchBarValue.includes("pvid")) {
+          let indexOfid = this.state.searchBarValue.search("id");
+          let subString = this.state.searchBarValue.slice(
+            indexOfid,
+            parseInt(indexOfid + 20)
           );
+          let productId = subString.split("=")[1];
+          console.log(productId);
+          if (productId.includes("&")) {
+            let exactProductId = productId.split("&")[0];
+            console.log(exactProductId);
+            this.props.history.push(
+              `${process.env.PUBLIC_URL}/taobao/${exactProductId}`
+            );
+          } else {
+            this.props.history.push(
+              `${process.env.PUBLIC_URL}/taobao/${productId}`
+            );
+          }
         } else {
-          this.props.setSearchedProductDetail(null, "taobao");
-          this.props.history.push(
-            `${process.env.PUBLIC_URL}/taobao/${productId}`
+          let indxOfPvId = this.state.searchBarValue.search("pvid");
+          let subStringPvId = this.state.searchBarValue.slice(indxOfPvId + 10);
+          let indexOfid = subStringPvId.search("id");
+          let subString = subStringPvId.slice(
+            indexOfid,
+            parseInt(indexOfid + 20)
           );
+          let productId = subString.split("=")[1];
+          console.log(productId);
+          if (productId.includes("&")) {
+            let exactProductId = productId.split("&")[0];
+            console.log(exactProductId);
+            this.props.history.push(
+              `${process.env.PUBLIC_URL}/taobao/${exactProductId}`
+            );
+          } else {
+            this.props.history.push(
+              `${process.env.PUBLIC_URL}/taobao/${productId}`
+            );
+          }
         }
       }
     }
