@@ -97,6 +97,7 @@ class HeaderThree extends Component {
   handleSearchBarSubmit = (event) => {
     event.preventDefault();
     if (this.state.searchBarValue.length < 35) {
+      this.props.setSearchedProductsArray([]);
       this.props.history.push(
         `${process.env.PUBLIC_URL}/collection/${this.state.searchBarValue}`
       );
@@ -104,10 +105,12 @@ class HeaderThree extends Component {
     } else {
       this.props.setSearchedProductsArray([]);
       if (this.state.searchBarValue.includes("1688")) {
+        this.props.setSearchedProductDetail(null, "1688");
         let productId = this.state.searchBarValue.split("/")[4].split(".")[0];
         console.log(productId);
         this.props.history.push(`${process.env.PUBLIC_URL}/1688/${productId}`);
       } else {
+        this.props.setSearchedProductDetail(null, "taobao");
         let taobaoUrl = new URL(this.state.searchBarValue);
         let params = taobaoUrl.search;
         const urlParams = new URLSearchParams(params);
