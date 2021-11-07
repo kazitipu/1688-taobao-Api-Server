@@ -6,7 +6,7 @@ const axios = require("axios");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
-
+const { getOrderTrackingResult } = require("./firebase/firebase.utils.js");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./uploads");
@@ -98,6 +98,15 @@ app.get("/getProductListByImage/:imgUrl", async (req, res, err) => {
     _URL_FOR_SEARCHING = `https://laonet.online/index.php?route=api_tester/call&api_name=item_search_img&lang=en&imgid=${searchUrl.toString()}&key=globalbuybd.com-kazi.tipu.nxt@gmail.com-taobao-1688`;
     const response = await axios.get(_URL_FOR_SEARCHING);
     res.send(response.data);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+});
+app.get("api/v1/orderTracking-alg/:trackingNo", async (req, res, err) => {
+  try {
+    const trackingNo = req.params.trackingNo;
+    const result = await getOrderTrackingResult(trackingNo);
+    res.send(result);
   } catch (error) {
     res.status(404).send(error);
   }
