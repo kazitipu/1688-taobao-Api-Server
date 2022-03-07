@@ -56,12 +56,13 @@ app.get("/collection/:searchKeywordAndPage", async (req, res) => {
   let searchKeywordAndPage = req.params.searchKeywordAndPage.split(",");
   let searchKeyword = searchKeywordAndPage[0];
   console.log(searchKeyword);
-  let page = searchKeywordAndPage[1];
+  let shop = searchKeywordAndPage[1];
+  let page = searchKeywordAndPage[2];
   console.log(page);
 
   console.log(req.params);
   // _EXTERNAL_URL = `http://api24.ch/taobao/index.php?route=api_tester/call&api_name=item_search&lang=en&q=${searchKeyword}&start_price=0&end_price=0&page=${page}&cat=0&discount_only=&sort=&page_size=&seller_info=&nick=&ppath=&imgid=&filter=&key=globalbuybd.com-kazi.tipu.nxt@gmail.com-taobao-1688`;
-  _EXTERNAL_URL = `https://asia.atphosting24.com/taobao/index.php?route=api_tester%2Fcall&api_name=item_search&lang=zh-CN&q=${searchKeyword}&start_price=0&end_price=0&page=${page}&cat=0&discount_only=&sort=&page_size=&seller_info=&nick=&ppath=&imgid=&filter=&key=globalbuybd.com-kazi.tipu.nxt%40gmail.com-taobao-1688`;
+  _EXTERNAL_URL = `https://asia.atphosting24.com/${shop}/index.php?route=api_tester%2Fcall&api_name=item_search&lang=zh-CN&q=${searchKeyword}&start_price=0&end_price=0&page=${page}&cat=0&discount_only=&sort=&page_size=&seller_info=&nick=&ppath=&imgid=&filter=&key=globalbuybd.com-kazi.tipu.nxt%40gmail.com-taobao-1688`;
 
   await axios
     .get(_EXTERNAL_URL)
